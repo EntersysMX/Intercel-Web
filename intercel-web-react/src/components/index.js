@@ -15,3 +15,4 @@ export { default as TrustSection } from './TrustSection';
 export { default as FAQ } from './FAQ';
 export { default as Partners } from './Partners';
 export { default as Footer } from './Footer';
+export { default as WhatsAppButton } from './WhatsAppButton';

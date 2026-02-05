@@ -18,6 +18,7 @@ import {
   FAQ,
   Partners,
   Footer,
+  WhatsAppButton,
 } from './components';
 import muiTheme from './styles/muiTheme';
 import { globalStyles } from './styles/globalStyles';
@@ -73,6 +74,9 @@ function App() {
 
         {/* Footer */}
         <Footer />
+
+        {/* WhatsApp Floating Button */}
+        <WhatsAppButton />
       </Box>
     </ThemeProvider>
   );
