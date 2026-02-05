@@ -1,0 +1,203 @@
+/* Todo está aislado bajo .icel-tools para no romper estilos globales ni Divi */
+.icel-tools * { box-sizing: border-box; }
+
+.icel-tools {
+  --icel-primary: #008A9C;
+  --icel-gray: #888;
+  --icel-light: #f5f7f8;
+  --icel-dark: #111;
+  --icel-error: #d11;
+  --icel-shadow: 0 4px 10px rgba(0,0,0,.08);
+  font-family: Arial, sans-serif;
+}
+
+/* Formularios */
+
+.icel-form-port {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 12px;
+  width: 100%;
+  max-width: 460px;
+  margin: 0;
+}
+
+.icel-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+
+.icel-label {
+  font-weight: bold;
+  color: #047384!important;
+  text-align: center;
+  line-height: 1.3em;
+    font-family: 'Plus Jakarta Sans', Helvetica, Arial, Lucida, sans-serif;
+    font-size: 25px;
+}
+
+.icel-input {
+  width: 100%;
+  max-width: 460px;
+  padding: 14px;
+  font-size: 16px;
+  text-align: center;
+  color: var(--icel-gray);
+  border: 2px solid var(--icel-primary);
+  border-radius: 24px;
+  background: transparent;
+  outline: none;
+  transition: border-color .25s ease;
+  height: 50px;
+}
+.icel-input:focus {
+  border-color: var(--icel-primary);
+  border-style: dotted;
+}
+
+.icel-btn {
+  margin-top: 6px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #fff;
+  background: var(--icel-primary);
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: var(--icel-shadow);
+}
+.icel-btn[disabled] {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.icel-hint {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+/* Modal */
+.icel-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999; /* por encima de Divi */
+  inset: 0;
+  background: rgba(0,0,0,.5);
+}
+.icel-modal.is-open { display: block; }
+
+.icel-modal__content {
+  background: #fff;
+  margin: 8% auto;
+  padding: 20px;
+  width: 92%;
+  max-width: 560px;
+  border-radius: 12px;
+  box-shadow: var(--icel-shadow);
+  position: relative;
+  text-align: center;
+}
+
+.icel-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.icel-modal__body {
+  margin-top: 14px;
+}
+
+/* Resultados */
+.icel-result {
+  text-align: center;
+}
+.icel-result__icon {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+.icel-result--ok .icel-result__icon { color: #009933; }
+.icel-result--error .icel-result__icon { color: red; }
+
+.icel-result__title {
+  margin: 0 0 8px;
+  font-weight: bold;
+}
+
+.icel-result__list p { margin: 4px 0; }
+.icel-note { color: #d47f00; }
+
+.icel-text--error {
+  color: red;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Bloques de balance */
+.icel-balance-wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.icel-balance__line { text-align: center; margin: 0; }
+.icel-accent { color: var(--icel-primary); font-weight: 700; }
+
+.icel-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--icel-shadow);
+  padding: 16px;
+  text-align: center;
+}
+
+.icel-card__title {
+  display: inline-block;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+}
+.icel-card__title--promo { color: #EA5D31; }
+
+.icel-card__value { margin: 8px 0 0; }
+
+.icel-chartbox {
+  width: 140px;
+  height: 70px;
+  margin: 10px auto 0;
+  position: relative;
+}
+
+.icel-legend {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.icel-legend span { font-size: 12px; color: #333; }
+
+/* Redes sociales */
+.icel-rsss-logos {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.icel-rsss-logos img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}

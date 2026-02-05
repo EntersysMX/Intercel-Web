@@ -1,0 +1,86 @@
+// Prisma Schema for Intercel Plans Database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Plan Categories (daily, monthly, quarterly, etc.)
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique // daily, monthly, quarterly, semester, annual, mifi
+  label       String   // Por día, Mensuales, etc.
+  icon        String   // CalendarToday, DateRange, etc.
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  plans       Plan[]
+}
+
+// Individual Plans
+model Plan {
+  id              String    @id @default(cuid())
+  categoryId      String
+  category        Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  // Pricing
+  price           Int       // Price in MXN (integer for cents precision)
+
+  // Data
+  data            String    // "2 GB", "4GB", "MIFI 5", etc.
+  originalData    String?   // Original data before promotion (e.g., "2GB")
+  multiplier      String?   // "Doble", "Triple", null
+
+  // Features
+  features        String    // Description of features
+  sms             String?   // "25 SMS", "1,750 SMS", null
+  duration        String    // "1 día", "30 días", "3 meses", etc.
+
+  // Booleans
+  hasCalls        Boolean   @default(false)
+  unlimitedSocial Boolean   @default(false)
+  isFeatured      Boolean   @default(false)
+  isMifi          Boolean   @default(false)
+  isActive        Boolean   @default(true)
+
+  // Promotion Tag
+  tag             String?   // "Cámbiate y recibe el Doble de GB", etc.
+
+  // Ordering
+  order           Int       @default(0)
+
+  // Timestamps
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([isActive])
+}
+
+// Admin Users
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Site Configuration
+model Config {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String   @default("string") // string, number, boolean, json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # ===========================================
+  # PostgreSQL Database
+  # ===========================================
+  intercel-db:
+    image: postgres:16-alpine
+    container_name: intercel-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - intercel-db-data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    networks:
+      - intercel-internal
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # Backend API (Node.js + Express + Prisma)
+  # ===========================================
+  intercel-api:
+    build:
+      context: ./intercel-api
+      dockerfile: Dockerfile
+    container_name: intercel-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@intercel-db:5432/${DB_NAME}?schema=public
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    depends_on:
+      intercel-db:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.intercel-api.rule=Host(`api.intercel.entersys.mx`)"
+      - "traefik.http.routers.intercel-api.entrypoints=websecure"
+      - "traefik.http.routers.intercel-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.intercel-api.loadbalancer.server.port=8001"
+      # CORS headers
+      - "traefik.http.middlewares.intercel-api-cors.headers.accesscontrolallowmethods=GET,POST,PUT,DELETE,OPTIONS"
+      - "traefik.http.middlewares.intercel-api-cors.headers.accesscontrolallowheaders=Content-Type,Authorization"
+      - "traefik.http.middlewares.intercel-api-cors.headers.accesscontrolalloworiginlist=https://intercel.entersys.mx,https://admin.intercel.entersys.mx"
+      - "traefik.http.middlewares.intercel-api-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.intercel-api-cors.headers.addvaryheader=true"
+      - "traefik.http.routers.intercel-api.middlewares=intercel-api-cors"
+    networks:
+      - traefik-public
+      - intercel-internal
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # Frontend (React - Public Website)
+  # ===========================================
+  intercel-frontend:
+    build:
+      context: ./intercel-web-react
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=https://api.intercel.entersys.mx
+    container_name: intercel-frontend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.intercel-frontend.rule=Host(`intercel.entersys.mx`)"
+      - "traefik.http.routers.intercel-frontend.entrypoints=websecure"
+      - "traefik.http.routers.intercel-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.intercel-frontend.loadbalancer.server.port=80"
+    networks:
+      - traefik-public
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================
+  # Admin Panel (React - Plan Management)
+  # ===========================================
+  intercel-admin:
+    build:
+      context: ./intercel-admin
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=https://api.intercel.entersys.mx
+    container_name: intercel-admin
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.intercel-admin.rule=Host(`admin.intercel.entersys.mx`)"
+      - "traefik.http.routers.intercel-admin.entrypoints=websecure"
+      - "traefik.http.routers.intercel-admin.tls.certresolver=letsencrypt"
+      - "traefik.http.services.intercel-admin.loadbalancer.server.port=80"
+    networks:
+      - traefik-public
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  traefik-public:
+    external: true
+  intercel-internal:
+    driver: bridge
+
+volumes:
+  intercel-db-data:

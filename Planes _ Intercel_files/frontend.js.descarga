@@ -1,0 +1,133 @@
+(function(){
+  function $(sel, ctx){ return (ctx||document).querySelector(sel); }
+  function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+
+  function openModal(wrapper){
+    const modal = wrapper.querySelector('.icel-modal');
+    if(!modal) return;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+  }
+  function closeModal(wrapper){
+    const modal = wrapper.querySelector('.icel-modal');
+    if(!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    const body = wrapper.querySelector('.icel-modal__body');
+    if(body) body.innerHTML = '';
+  }
+
+  function renderCharts(ctxRoot){
+    const canvases = $all('.icel-chart', ctxRoot);
+    canvases.forEach(function(cv){
+      const type = cv.getAttribute('data-chart') || 'doughnut';
+      const available = parseFloat(cv.getAttribute('data-available') || '0');
+      const used = parseFloat(cv.getAttribute('data-used') || '0');
+      const ctx = cv.getContext('2d');
+      new Chart(ctx, {
+        type: type,
+        data: {
+          labels: ['Disponible', 'Usado'],
+          datasets: [{ data: [available, used], borderWidth: 1 }]
+        },
+        options: {
+          rotation: -90,
+          circumference: 180,
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+    });
+  }
+
+  function handleForm(form){
+    if(!form) return;
+
+    const wrapper = form.closest('.icel-tools');
+    const modalBody = wrapper.querySelector('.icel-modal__body');
+    const btn = form.querySelector('.icel-btn');
+    const action = form.getAttribute('data-icel-action');
+
+    // Validaciones por tipo
+    const fd = new FormData(form);
+    if(action === 'intercel_check_imei'){
+      const imei = (fd.get('imei') || '').trim();
+      if(!/^\d{14,16}$/.test(imei)){ alert('El IMEI debe tener entre 14 y 16 dígitos numéricos.'); return; }
+    }
+    if(action === 'intercel_check_balance'){
+      const msisdn = (fd.get('msisdn') || '').trim();
+      if(!/^\d{10}$/.test(msisdn)){ alert('El número debe tener exactamente 10 dígitos.'); return; }
+    }
+    if(action === 'intercel_send_portability'){
+      const a = (fd.get('msisdn_iccid') || '').trim();
+      const b = (fd.get('port_in') || '').trim();
+      const n = (fd.get('nip') || '').trim();
+      if(!/^\d{10}$/.test(a) || !/^\d{10}$/.test(b) || !/^\d{4}$/.test(n)){
+        alert('Verifica que todos los campos estén correctamente llenados.');
+        return;
+      }
+    }
+
+    // Estado UI
+    if(btn){ btn.disabled = true; btn.textContent = (action==='intercel_check_balance'?'Procesando...': action==='intercel_send_portability'?'Procesando...':'Procesando...'); }
+    openModal(wrapper);
+    if(modalBody){ modalBody.innerHTML = '<p class="icel-loading">EN PROCESO...</p>'; }
+
+    // AJAX
+    fd.append('action', action);
+    fd.append('nonce', (window.INTERCEL_TOOLS && INTERCEL_TOOLS.nonce) || '');
+
+    fetch((window.INTERCEL_TOOLS && INTERCEL_TOOLS.ajax_url) || '', {
+      method: 'POST',
+      body: fd
+    })
+    .then(r => r.json())
+    .then(res => {
+      if(btn){ btn.disabled = false; btn.textContent = (action==='intercel_check_balance'?'Consultar': action==='intercel_send_portability'?'Solicitar':'Enviar'); }
+      if(modalBody){
+        modalBody.innerHTML = (res && res.success) ? res.data : (res && res.data ? res.data : '<p class="icel-text--error">Error inesperado. Intenta de nuevo.</p>');
+        renderCharts(modalBody);
+      }
+    })
+    .catch(() => {
+      if(btn){ btn.disabled = false; btn.textContent = 'Enviar'; }
+      if(modalBody){ modalBody.innerHTML = '<p class="icel-text--error">Error inesperado. Intenta de nuevo.</p>'; }
+    });
+  }
+
+  // 1) CLICK en el botón (evita submit nativo siempre)
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.icel-form .icel-btn');
+    if(!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    const form = btn.closest('.icel-form');
+    handleForm(form);
+  });
+
+  // 2) SUBMIT como respaldo (si el usuario presiona Enter)
+  document.addEventListener('submit', function(e){
+    const form = e.target.closest('.icel-form');
+    if(!form) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    handleForm(form);
+    return false;
+  });
+
+  // Cerrar modal
+  document.addEventListener('click', function(e){
+    const isClose = e.target.matches('.icel-modal__close');
+    const modal = e.target.closest('.icel-modal');
+    if(isClose){
+      const wrapper = e.target.closest('.icel-tools');
+      if(wrapper) closeModal(wrapper);
+    } else if(modal && e.target === modal){
+      const wrapper = e.target.closest('.icel-tools');
+      if(wrapper) closeModal(wrapper);
+    }
+  });
+})();
