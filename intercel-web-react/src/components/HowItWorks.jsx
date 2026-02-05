@@ -6,38 +6,32 @@
 import { Box, Container, Typography, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { colors } from '../styles/designTokens';
-import { images } from '../data/assets';
 
 const steps = [
   {
     number: 1,
     title: 'Elige tu plan',
     description: 'Selecciona el plan perfecto que se adapte a tus necesidades.',
-    image: images.paso1,
   },
   {
     number: 2,
     title: 'Compra tu eSIM',
     description: 'Proceso 100% digital, seguro y en menos de 2 minutos.',
-    image: images.paso2,
   },
   {
     number: 3,
     title: 'Recibe tu QR',
     description: 'Recibirás tu código de activación al instante.',
-    image: images.paso3,
   },
   {
     number: 4,
     title: 'Escanea y activa',
     description: 'Escanea el QR desde los ajustes de tu dispositivo.',
-    image: images.paso4,
   },
   {
     number: 5,
     title: '¡Listo!',
     description: 'Disfruta de la mejor conectividad nacional.',
-    image: images.paso5,
   },
 ];
 
@@ -172,36 +166,6 @@ const HowItWorks = () => {
                   >
                     {step.number}
                   </Typography>
-                </Box>
-
-                {/* Step Icon - Small */}
-                <Box
-                  sx={{
-                    width: 50,
-                    height: 50,
-                    mx: 'auto',
-                    mb: 2,
-                    borderRadius: '14px',
-                    background: 'linear-gradient(135deg, #047384 0%, #00C6AE 100%)',
-                    boxShadow: '0 8px 25px rgba(4, 115, 132, 0.35)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    overflow: 'hidden',
-                    p: 1,
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={step.image}
-                    alt={step.title}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      filter: 'brightness(0) invert(1)',
-                    }}
-                  />
                 </Box>
 
                 {/* Step Content */}
