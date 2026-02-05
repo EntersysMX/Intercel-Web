@@ -46,7 +46,7 @@ function App() {
           {/* Pricing Plans Section - FIRST after banner */}
           <PricingSection />
 
-          {/* Trust Section - Stats & Badges */}
+          {/* Trust Badges */}
           <TrustSection />
 
           {/* Features Banner */}

@@ -1,47 +1,16 @@
 /**
- * TrustSection Component - Statistics & Trust Badges
- * Builds customer confidence with social proof
+ * TrustSection Component - Trust Badges Only
+ * Builds customer confidence with security badges
  */
 
 import { Box, Container, Typography, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import {
-  People,
-  Star,
   Verified,
-  Speed,
-  Support,
   Security,
   CreditCard,
   Lock,
 } from '@mui/icons-material';
-
-const stats = [
-  {
-    icon: People,
-    value: '15,000+',
-    label: 'Clientes Activos',
-    color: '#00C6AE',
-  },
-  {
-    icon: Star,
-    value: '4.8',
-    label: 'Calificación App Store',
-    color: '#FFD700',
-  },
-  {
-    icon: Speed,
-    value: '99.9%',
-    label: 'Uptime de Red',
-    color: '#00C6AE',
-  },
-  {
-    icon: Support,
-    value: '24/7',
-    label: 'Soporte al Cliente',
-    color: '#00C6AE',
-  },
-];
 
 const trustBadges = [
   {
@@ -71,90 +40,18 @@ const TrustSection = () => {
     <Box
       component="section"
       sx={{
-        py: { xs: 6, md: 8 },
-        background: 'linear-gradient(180deg, #F8FFFE 0%, #FFFFFF 100%)',
+        py: { xs: 5, md: 6 },
+        background: '#FFFFFF',
       }}
     >
       <Container maxWidth="lg">
-        {/* Stats Row */}
-        <Box
-          component={motion.div}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: { xs: 3, md: 6 },
-            mb: { xs: 6, md: 8 },
-            pb: { xs: 6, md: 8 },
-            borderBottom: '1px solid rgba(0, 198, 174, 0.15)',
-          }}
-        >
-          {stats.map((stat, index) => {
-            const IconComponent = stat.icon;
-            return (
-              <Box
-                key={stat.label}
-                component={motion.div}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                sx={{
-                  textAlign: 'center',
-                  minWidth: { xs: 140, sm: 160 },
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    mx: 'auto',
-                    mb: 1.5,
-                    borderRadius: '16px',
-                    background: `linear-gradient(135deg, ${stat.color}15 0%, ${stat.color}08 100%)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <IconComponent sx={{ fontSize: 28, color: stat.color }} />
-                </Box>
-                <Typography
-                  sx={{
-                    fontSize: { xs: '2rem', md: '2.5rem' },
-                    fontWeight: 800,
-                    color: '#047384',
-                    lineHeight: 1,
-                    mb: 0.5,
-                  }}
-                >
-                  {stat.value}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '0.85rem',
-                    fontWeight: 500,
-                    color: '#666',
-                  }}
-                >
-                  {stat.label}
-                </Typography>
-              </Box>
-            );
-          })}
-        </Box>
-
         {/* Trust Badges */}
         <Box
           component={motion.div}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
         >
           <Typography
             sx={{
