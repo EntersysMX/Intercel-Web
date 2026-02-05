@@ -326,7 +326,7 @@ export const planCategories = [
 export const navLinks = [
   { label: 'Inicio', href: 'https://intercel.com.mx/' },
   { label: '¿Quiénes somos?', href: 'https://intercel.com.mx/quienes-somos/' },
-  { label: 'Planes', href: 'https://intercel.com.mx/planes/', active: true },
+  { label: 'Planes', href: 'https://intercel.entersys.mx/planes', active: true },
   { label: 'Cobertura', href: 'https://intercel.com.mx/cobertura/' },
   { label: 'Consultar', href: 'https://intercel.com.mx/consultar/' },
   { label: 'Recarga', href: 'https://intercel.omv-recargasmexico.com/', external: true },
@@ -339,14 +339,14 @@ export const footerLinks = {
   menu: [
     { label: 'Inicio', href: 'https://intercel.com.mx/' },
     { label: '¿Quiénes somos?', href: 'https://intercel.com.mx/quienes-somos/' },
-    { label: 'Planes', href: 'https://intercel.com.mx/planes/' },
+    { label: 'Planes', href: 'https://intercel.entersys.mx/planes' },
     { label: 'Cobertura', href: 'https://intercel.com.mx/cobertura/' },
     { label: 'Consulta', href: 'https://intercel.com.mx/consultar/' },
     { label: 'Recarga', href: 'https://byplus.io/intercel', external: true },
     { label: 'Contacto', href: 'https://intercel.com.mx/cobertura-2/' },
   ],
   services: [
-    { label: 'Planes', href: 'https://intercel.com.mx/planes/' },
+    { label: 'Planes', href: 'https://intercel.entersys.mx/planes' },
     { label: 'Coberturas', href: 'https://intercel.com.mx/cobertura/' },
     { label: 'Consultas', href: 'https://intercel.com.mx/consultar/' },
     { label: 'Recargas', href: 'https://byplus.io/intercel', external: true },
