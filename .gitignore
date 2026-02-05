@@ -30,7 +30,7 @@ Thumbs.db
 *.swo
 
 # Docker volumes (local)
-data/
+/data/
 
 # Prisma
 prisma/migrations/*.db
