@@ -129,7 +129,7 @@ const Partners = () => {
           >
             <Box
               component="img"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Telcel_logo.svg/200px-Telcel_logo.svg.png"
+              src="https://www.telcel.com/content/dam/telcelcom/iconos/logo-telcel.svg"
               alt="Telcel"
               sx={{
                 height: { xs: 35, md: 45 },
