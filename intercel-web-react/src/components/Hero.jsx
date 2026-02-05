@@ -49,6 +49,9 @@ const Hero = () => {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        // Overlap navbar spacer to eliminate white line
+        mt: { xs: '-64px', lg: '-80px' },
+        pt: { xs: '64px', lg: '80px' },
       }}
     >
       {/* Background Image */}
