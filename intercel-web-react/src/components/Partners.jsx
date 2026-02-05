@@ -91,7 +91,7 @@ const Partners = () => {
           </Typography>
         </Box>
 
-        {/* Network Logos - Visual representation */}
+        {/* Network Logos - Official logos */}
         <Box
           component={motion.div}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -102,81 +102,78 @@ const Partners = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: { xs: 4, md: 8 },
+            gap: { xs: 3, md: 6 },
             mb: { xs: 5, md: 7 },
             flexWrap: 'wrap',
           }}
         >
-          {/* Network Visual Badges */}
+          {/* Telcel Logo */}
           <Box
+            component={motion.div}
+            whileHover={{ scale: 1.05 }}
             sx={{
               display: 'flex',
               alignItems: 'center',
               gap: 2,
-              px: 4,
-              py: 2,
+              px: { xs: 3, md: 4 },
+              py: 2.5,
               borderRadius: '16px',
-              background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-              border: '1px solid #e0e0e0',
+              background: '#FFFFFF',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #f0f0f0',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+              },
             }}
           >
             <Box
+              component="img"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Telcel_logo.svg/200px-Telcel_logo.svg.png"
+              alt="Telcel"
               sx={{
-                width: 50,
-                height: 50,
-                borderRadius: '12px',
-                background: 'linear-gradient(135deg, #E20074 0%, #FF4081 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                height: { xs: 35, md: 45 },
+                objectFit: 'contain',
               }}
-            >
-              <Typography sx={{ color: 'white', fontWeight: 800, fontSize: '1.2rem' }}>
-                T
-              </Typography>
-            </Box>
-            <Box>
-              <Typography sx={{ fontWeight: 700, color: '#1a1a2e', fontSize: '1rem' }}>
-                Red Telcel
-              </Typography>
-              <Typography sx={{ fontSize: '0.75rem', color: '#666' }}>
+            />
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Typography sx={{ fontWeight: 600, color: '#1a1a2e', fontSize: '0.9rem' }}>
                 Cobertura 4G/5G
               </Typography>
             </Box>
           </Box>
 
+          {/* AT&T Logo */}
           <Box
+            component={motion.div}
+            whileHover={{ scale: 1.05 }}
             sx={{
               display: 'flex',
               alignItems: 'center',
               gap: 2,
-              px: 4,
-              py: 2,
+              px: { xs: 3, md: 4 },
+              py: 2.5,
               borderRadius: '16px',
-              background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-              border: '1px solid #e0e0e0',
+              background: '#FFFFFF',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #f0f0f0',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+              },
             }}
           >
             <Box
+              component="img"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/AT%26T_logo_2016.svg/200px-AT%26T_logo_2016.svg.png"
+              alt="AT&T"
               sx={{
-                width: 50,
-                height: 50,
-                borderRadius: '12px',
-                background: 'linear-gradient(135deg, #009FDB 0%, #00C4FF 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                height: { xs: 35, md: 45 },
+                objectFit: 'contain',
               }}
-            >
-              <Typography sx={{ color: 'white', fontWeight: 800, fontSize: '0.9rem' }}>
-                AT&T
-              </Typography>
-            </Box>
-            <Box>
-              <Typography sx={{ fontWeight: 700, color: '#1a1a2e', fontSize: '1rem' }}>
-                Red AT&T
-              </Typography>
-              <Typography sx={{ fontSize: '0.75rem', color: '#666' }}>
+            />
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Typography sx={{ fontWeight: 600, color: '#1a1a2e', fontSize: '0.9rem' }}>
                 Roaming incluido
               </Typography>
             </Box>
