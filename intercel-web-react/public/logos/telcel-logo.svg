@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="telcelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00599d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0077be;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Telcel text -->
+  <text x="10" y="42" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#telcelGradient)">Telcel</text>
+  <!-- Signal bars -->
+  <g transform="translate(150, 15)">
+    <rect x="0" y="25" width="8" height="15" rx="2" fill="#00599d"/>
+    <rect x="12" y="18" width="8" height="22" rx="2" fill="#0077be"/>
+    <rect x="24" y="10" width="8" height="30" rx="2" fill="#00599d"/>
+    <rect x="36" y="2" width="8" height="38" rx="2" fill="#0077be"/>
+  </g>
+</svg>

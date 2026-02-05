@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60">
+  <defs>
+    <linearGradient id="attGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00a8e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0078c1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- AT&T Globe -->
+  <circle cx="30" cy="30" r="25" fill="none" stroke="url(#attGradient)" stroke-width="3"/>
+  <!-- Horizontal lines inside globe -->
+  <ellipse cx="30" cy="20" rx="20" ry="6" fill="none" stroke="url(#attGradient)" stroke-width="1.5"/>
+  <line x1="5" y1="30" x2="55" y2="30" stroke="url(#attGradient)" stroke-width="1.5"/>
+  <ellipse cx="30" cy="40" rx="20" ry="6" fill="none" stroke="url(#attGradient)" stroke-width="1.5"/>
+  <!-- Vertical line -->
+  <ellipse cx="30" cy="30" rx="8" ry="25" fill="none" stroke="url(#attGradient)" stroke-width="1.5"/>
+  <!-- AT&T Text -->
+  <text x="62" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0078c1">AT&amp;T</text>
+</svg>

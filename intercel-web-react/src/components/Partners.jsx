@@ -129,8 +129,8 @@ const Partners = () => {
           >
             <Box
               component="img"
-              src="https://www.telcel.com/content/dam/telcelcom/iconos/logo-telcel.svg"
-              alt="Telcel"
+              src="/logos/telcel-logo.svg"
+              alt="Telcel - Cobertura Nacional"
               sx={{
                 height: { xs: 35, md: 45 },
                 objectFit: 'contain',
@@ -165,8 +165,8 @@ const Partners = () => {
           >
             <Box
               component="img"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/AT%26T_logo_2016.svg/200px-AT%26T_logo_2016.svg.png"
-              alt="AT&T"
+              src="/logos/att-logo.svg"
+              alt="AT&T - Roaming Internacional"
               sx={{
                 height: { xs: 35, md: 45 },
                 objectFit: 'contain',

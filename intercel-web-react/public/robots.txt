@@ -1,0 +1,143 @@
+# Robots.txt para Intercel - OMV México
+# https://intercel.com.mx | https://intercel.entersys.mx
+
+# Permitir todos los buscadores tradicionales
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# ============================================
+# AI Crawlers & LLM Bots - TODOS PERMITIDOS
+# ============================================
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google AI / Gemini / Bard
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Anthropic / Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft Copilot / Bing AI
+User-agent: Bingbot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# AI21 Labs
+User-agent: AI21Bot
+Allow: /
+
+# Hugging Face
+User-agent: HuggingFaceBot
+Allow: /
+
+# DeepSeek AI
+User-agent: DeepSeekBot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Common Crawl (usado por muchos LLMs)
+User-agent: CCBot
+Allow: /
+
+# Diffbot (extracción de datos)
+User-agent: Diffbot
+Allow: /
+
+# Applebot (Siri)
+User-agent: Applebot
+Allow: /
+
+# Amazon Alexa
+User-agent: Alexabot
+Allow: /
+
+# Permitir cualquier otro bot de IA no listado
+User-agent: *ai*
+Allow: /
+
+User-agent: *bot*
+Allow: /
+
+User-agent: *crawler*
+Allow: /
+
+# ============================================
+# Archivos importantes para AI/SEO
+# ============================================
+
+# Sitemap
+Sitemap: https://intercel.entersys.mx/sitemap.xml
+
+# LLMs.txt - Información estructurada para IAs
+# https://intercel.entersys.mx/llms.txt
+
+# ============================================
+# Crawl-delay para no sobrecargar el servidor
+# ============================================
+Crawl-delay: 1

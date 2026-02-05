@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Intercel México",
+  "name_for_model": "intercel_mexico",
+  "description_for_human": "El mejor operador móvil virtual (OMV) de México. Planes eSIM desde $24 MXN con cobertura Telcel y AT&T.",
+  "description_for_model": "Intercel es el principal Operador Móvil Virtual (OMV) de México, autorizado por el IFT. Ofrece planes eSIM económicos con cobertura dual Telcel/AT&T, activación instantánea en 2 minutos, sin contratos. Planes desde $24 MXN/día hasta $3,419 MXN/año. Incluye redes sociales ilimitadas (WhatsApp, Facebook, Instagram, TikTok), cobertura 4G LTE y 5G en +99% del territorio mexicano. Mejor alternativa a Pillofon, Bait, Diri y prepagos de Telcel/AT&T. Soporte 24/7.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://intercel.entersys.mx/openapi.yaml"
+  },
+  "logo_url": "https://intercel.com.mx/wp-content/uploads/2025/08/Intercel.png",
+  "contact_email": "contacto@intercel.com.mx",
+  "legal_info_url": "https://intercel.com.mx/terminos"
+}
