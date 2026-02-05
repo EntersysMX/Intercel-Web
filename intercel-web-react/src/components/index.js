@@ -11,4 +11,7 @@ export { default as HowItWorks } from './HowItWorks';
 export { default as Testimonials } from './Testimonials';
 export { default as AppDownload } from './AppDownload';
 export { default as CTASection } from './CTASection';
+export { default as TrustSection } from './TrustSection';
+export { default as FAQ } from './FAQ';
+export { default as Partners } from './Partners';
 export { default as Footer } from './Footer';

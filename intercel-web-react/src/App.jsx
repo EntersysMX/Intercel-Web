@@ -14,6 +14,9 @@ import {
   Testimonials,
   AppDownload,
   CTASection,
+  TrustSection,
+  FAQ,
+  Partners,
   Footer,
 } from './components';
 import muiTheme from './styles/muiTheme';
@@ -43,14 +46,23 @@ function App() {
           {/* Pricing Plans Section - FIRST after banner */}
           <PricingSection />
 
+          {/* Trust Section - Stats & Badges */}
+          <TrustSection />
+
           {/* Features Banner */}
           <FeaturesBanner />
 
           {/* How It Works - Steps */}
           <HowItWorks />
 
+          {/* Partners & Coverage */}
+          <Partners />
+
           {/* Testimonials */}
           <Testimonials />
+
+          {/* FAQ Section */}
+          <FAQ />
 
           {/* App Download */}
           <AppDownload />
