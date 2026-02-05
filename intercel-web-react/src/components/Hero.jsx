@@ -151,106 +151,47 @@ const Hero = () => {
             />
           </Box>
 
-          {/* Main Title with Gradient Text */}
-          <Box
-            component={motion.div}
+          {/* Main Title - Clean & Refined */}
+          <Typography
+            component={motion.h1}
             variants={itemVariants}
-            sx={{ mb: 3, position: 'relative' }}
+            sx={{
+              fontSize: { xs: '2.8rem', sm: '3.5rem', md: '4.5rem' },
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              mb: 2,
+              color: 'white',
+            }}
           >
-            {/* Glow effect behind text */}
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '120%',
-                height: '150%',
-                background: 'radial-gradient(ellipse, rgba(0, 198, 174, 0.3) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-                pointerEvents: 'none',
-              }}
-            />
-            <Typography
-              component="h1"
-              sx={{
-                fontSize: { xs: '4rem', sm: '6rem', md: '8rem', lg: '10rem' },
-                fontWeight: 900,
-                lineHeight: 0.9,
-                letterSpacing: '-0.05em',
-                background: 'linear-gradient(135deg, #FFFFFF 0%, #00FFE0 50%, #00C6AE 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: 'none',
-                filter: 'drop-shadow(0 4px 30px rgba(0, 198, 174, 0.5))',
-                position: 'relative',
-              }}
-            >
-              Planes
-            </Typography>
-            {/* Decorative line under title */}
-            <Box
-              component={motion.div}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              sx={{
-                width: { xs: 80, md: 120 },
-                height: 4,
-                background: 'linear-gradient(90deg, transparent, #00C6AE, transparent)',
-                borderRadius: 2,
-                mx: 'auto',
-                mt: 2,
-              }}
-            />
-          </Box>
+            Nuestros Planes
+          </Typography>
 
-          {/* Subtitle */}
+          {/* Subtitle - Elegant */}
           <Typography
             component={motion.p}
             variants={itemVariants}
             sx={{
-              fontSize: { xs: '1.25rem', md: '1.75rem' },
-              fontWeight: 300,
-              maxWidth: 700,
+              fontSize: { xs: '1.1rem', md: '1.35rem' },
+              fontWeight: 400,
+              maxWidth: 500,
               mx: 'auto',
-              mb: 2,
-              lineHeight: 1.6,
-              letterSpacing: '0.02em',
-              color: 'rgba(255, 255, 255, 0.95)',
-              textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)',
+              mb: 5,
+              lineHeight: 1.7,
+              color: 'rgba(255, 255, 255, 0.9)',
             }}
           >
-            Conectividad{' '}
+            Conectividad sin límites, diseñada para ti.
+            <br />
             <Box
               component="span"
               sx={{
-                fontWeight: 700,
-                background: 'linear-gradient(90deg, #00FFE0, #00C6AE)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                fontSize: '0.9em',
+                color: 'rgba(255, 255, 255, 0.7)',
               }}
             >
-              sin límites
+              Activa tu eSIM en segundos.
             </Box>
-            . Diseñada para ti.
-          </Typography>
-          <Typography
-            component={motion.p}
-            variants={itemVariants}
-            sx={{
-              fontSize: { xs: '1rem', md: '1.15rem' },
-              fontWeight: 400,
-              color: 'rgba(255, 255, 255, 0.75)',
-              maxWidth: 550,
-              mx: 'auto',
-              mb: 5,
-              lineHeight: 1.6,
-            }}
-          >
-            Activa tu eSIM en segundos y disfruta la mejor cobertura nacional.
           </Typography>
 
           {/* CTA Buttons - IMPROVED COLORS */}
