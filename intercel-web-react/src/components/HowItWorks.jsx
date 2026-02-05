@@ -1,37 +1,48 @@
 /**
  * HowItWorks Component - Premium Steps Section
- * Silicon Valley-style animated step-by-step guide
+ * Modern design with glassmorphism and animations
  */
 
-import { Box, Container, Typography, Grid } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import { colors } from '../styles/designTokens';
+import {
+  TouchApp,
+  ShoppingCart,
+  QrCode2,
+  PhonelinkSetup,
+  Celebration,
+} from '@mui/icons-material';
 
 const steps = [
   {
     number: 1,
     title: 'Elige tu plan',
-    description: 'Selecciona el plan perfecto que se adapte a tus necesidades.',
+    description: 'Selecciona el plan perfecto para ti',
+    icon: TouchApp,
   },
   {
     number: 2,
     title: 'Compra tu eSIM',
-    description: 'Proceso 100% digital, seguro y en menos de 2 minutos.',
+    description: 'Proceso 100% digital y seguro',
+    icon: ShoppingCart,
   },
   {
     number: 3,
     title: 'Recibe tu QR',
-    description: 'Recibirás tu código de activación al instante.',
+    description: 'Al instante en tu correo',
+    icon: QrCode2,
   },
   {
     number: 4,
     title: 'Escanea y activa',
-    description: 'Escanea el QR desde los ajustes de tu dispositivo.',
+    description: 'Desde ajustes de tu celular',
+    icon: PhonelinkSetup,
   },
   {
     number: 5,
     title: '¡Listo!',
-    description: 'Disfruta de la mejor conectividad nacional.',
+    description: 'Disfruta tu conexión',
+    icon: Celebration,
   },
 ];
 
@@ -40,27 +51,51 @@ const HowItWorks = () => {
     <Box
       component="section"
       sx={{
-        py: { xs: 10, md: 14 },
-        background: 'linear-gradient(180deg, #FFFFFF 0%, #F0F9FA 50%, #FFFFFF 100%)',
+        py: { xs: 8, md: 12 },
+        background: 'linear-gradient(135deg, #047384 0%, #035A68 50%, #023D47 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Background Decoration */}
+      {/* Animated Background Elements */}
       <Box
+        component={motion.div}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 8, repeat: Infinity }}
         sx={{
           position: 'absolute',
-          top: '10%',
-          right: '-10%',
+          top: '-20%',
+          left: '-10%',
           width: 500,
           height: 500,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 198, 174, 0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
+          background: 'radial-gradient(circle, rgba(0, 198, 174, 0.2) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+      <Box
+        component={motion.div}
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+        sx={{
+          position: 'absolute',
+          bottom: '-30%',
+          right: '-10%',
+          width: 600,
+          height: 600,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 229, 201, 0.15) 0%, transparent 70%)',
+          filter: 'blur(80px)',
         }}
       />
 
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Section Header */}
         <Box
           component={motion.div}
@@ -68,112 +103,163 @@ const HowItWorks = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}
+          sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}
         >
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             sx={{
-              fontSize: { xs: '0.85rem', md: '1rem' },
-              fontWeight: 700,
-              color: '#00C6AE',
+              display: 'inline-block',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              color: '#00E5C9',
               textTransform: 'uppercase',
-              letterSpacing: '0.15em',
+              letterSpacing: '0.2em',
               mb: 2,
+              px: 3,
+              py: 1,
+              borderRadius: '50px',
+              background: 'rgba(0, 229, 201, 0.1)',
+              border: '1px solid rgba(0, 229, 201, 0.3)',
             }}
           >
             Proceso Simple
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.2rem' },
-              fontWeight: 800,
-              color: colors.text.primary,
-              lineHeight: 1.15,
-              mb: 2,
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              fontWeight: 700,
+              color: 'white',
+              lineHeight: 1.2,
+              mb: 1,
             }}
           >
-            ¿Cómo funciona?
+            Activa tu eSIM en minutos
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: '1rem', md: '1.2rem' },
-              color: colors.text.secondary,
-              maxWidth: 550,
+              fontSize: { xs: '1rem', md: '1.15rem' },
+              color: 'rgba(255, 255, 255, 0.7)',
+              maxWidth: 450,
               mx: 'auto',
             }}
           >
-            Activa tu eSIM en 5 sencillos pasos
+            Solo 5 pasos para conectarte
           </Typography>
         </Box>
 
-        {/* Steps Grid */}
-        <Grid container spacing={4} justifyContent="center">
-          {steps.map((step, index) => (
-            <Grid item xs={6} sm={4} md key={step.number}>
+        {/* Steps - Horizontal Timeline */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { xs: 'center', md: 'flex-start' },
+            justifyContent: 'center',
+            gap: { xs: 3, md: 0 },
+            position: 'relative',
+          }}
+        >
+          {/* Connection Line - Desktop */}
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'block' },
+              position: 'absolute',
+              top: 45,
+              left: '12%',
+              right: '12%',
+              height: 2,
+              background: 'linear-gradient(90deg, transparent, rgba(0, 229, 201, 0.5), rgba(0, 229, 201, 0.5), transparent)',
+            }}
+          />
+
+          {steps.map((step, index) => {
+            const IconComponent = step.icon;
+            return (
               <Box
+                key={step.number}
                 component={motion.div}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                 sx={{
-                  position: 'relative',
+                  flex: { md: 1 },
+                  maxWidth: { xs: 280, md: 'none' },
                   textAlign: 'center',
+                  px: { md: 2 },
+                  position: 'relative',
+                  zIndex: 2,
                 }}
               >
-                {/* Connection Line - Desktop */}
-                {index < steps.length - 1 && (
-                  <Box
-                    sx={{
-                      display: { xs: 'none', md: 'block' },
-                      position: 'absolute',
-                      top: 55,
-                      right: { md: -30, lg: -40 },
-                      width: { md: 60, lg: 80 },
-                      height: 3,
-                      background: 'linear-gradient(90deg, #00C6AE 0%, rgba(0, 198, 174, 0.2) 100%)',
-                      borderRadius: 2,
-                    }}
-                  />
-                )}
-
-                {/* Step Number Circle */}
+                {/* Icon Circle */}
                 <Box
+                  component={motion.div}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: '0 0 40px rgba(0, 229, 201, 0.6)',
+                  }}
+                  transition={{ type: 'spring', stiffness: 300 }}
                   sx={{
-                    width: 110,
-                    height: 110,
+                    width: 90,
+                    height: 90,
                     mx: 'auto',
-                    mb: 2,
+                    mb: 2.5,
                     borderRadius: '50%',
-                    background: 'linear-gradient(145deg, #047384 0%, #00C6AE 100%)',
-                    boxShadow: '0 15px 40px rgba(4, 115, 132, 0.35), 0 5px 15px rgba(0, 198, 174, 0.3)',
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+                    backdropFilter: 'blur(10px)',
+                    border: '2px solid rgba(0, 229, 201, 0.4)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
-                    border: '3px solid rgba(255, 255, 255, 0.3)',
+                    cursor: 'pointer',
+                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
                   }}
                 >
-                  {/* Large Number */}
-                  <Typography
+                  {/* Number Badge */}
+                  <Box
                     sx={{
-                      fontSize: '3rem',
-                      fontWeight: 900,
-                      color: 'white',
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-                      lineHeight: 1,
+                      position: 'absolute',
+                      top: -5,
+                      right: -5,
+                      width: 28,
+                      height: 28,
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #00E5C9 0%, #00C6AE 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 4px 15px rgba(0, 229, 201, 0.5)',
                     }}
                   >
-                    {step.number}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '0.85rem',
+                        fontWeight: 800,
+                        color: '#023D47',
+                      }}
+                    >
+                      {step.number}
+                    </Typography>
+                  </Box>
+
+                  <IconComponent
+                    sx={{
+                      fontSize: 38,
+                      color: '#00E5C9',
+                      filter: 'drop-shadow(0 2px 8px rgba(0, 229, 201, 0.4))',
+                    }}
+                  />
                 </Box>
 
-                {/* Step Content */}
+                {/* Content */}
                 <Typography
                   sx={{
-                    fontSize: '1rem',
+                    fontSize: '1.05rem',
                     fontWeight: 700,
-                    color: colors.text.primary,
+                    color: 'white',
                     mb: 0.5,
                   }}
                 >
@@ -181,18 +267,74 @@ const HowItWorks = () => {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: '0.8rem',
-                    color: colors.text.secondary,
+                    fontSize: '0.85rem',
+                    color: 'rgba(255, 255, 255, 0.6)',
                     lineHeight: 1.5,
-                    px: 1,
                   }}
                 >
                   {step.description}
                 </Typography>
+
+                {/* Arrow for mobile */}
+                {index < steps.length - 1 && (
+                  <Box
+                    component={motion.div}
+                    animate={{ y: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    sx={{
+                      display: { xs: 'block', md: 'none' },
+                      mt: 2,
+                      color: 'rgba(0, 229, 201, 0.5)',
+                      fontSize: '1.5rem',
+                    }}
+                  >
+                    ↓
+                  </Box>
+                )}
               </Box>
-            </Grid>
-          ))}
-        </Grid>
+            );
+          })}
+        </Box>
+
+        {/* Bottom CTA */}
+        <Box
+          component={motion.div}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          sx={{
+            textAlign: 'center',
+            mt: { xs: 6, md: 8 },
+          }}
+        >
+          <Box
+            component={motion.a}
+            href="#Planes"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              px: 4,
+              py: 1.5,
+              borderRadius: '50px',
+              background: 'linear-gradient(135deg, #00E5C9 0%, #00C6AE 100%)',
+              color: '#023D47',
+              fontWeight: 700,
+              fontSize: '1rem',
+              textDecoration: 'none',
+              boxShadow: '0 10px 30px rgba(0, 229, 201, 0.4)',
+              transition: 'box-shadow 0.3s ease',
+              '&:hover': {
+                boxShadow: '0 15px 40px rgba(0, 229, 201, 0.5)',
+              },
+            }}
+          >
+            Comenzar ahora
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
