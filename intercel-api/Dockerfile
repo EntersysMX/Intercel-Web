@@ -6,6 +6,9 @@
 # Stage 1: Build
 FROM node:20-alpine AS builder
 
+# Install OpenSSL for Prisma
+RUN apk add --no-cache openssl openssl-dev
+
 WORKDIR /app
 
 # Copy package files
@@ -23,8 +26,8 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init wget
+# Install dumb-init, wget, and OpenSSL for Prisma
+RUN apk add --no-cache dumb-init wget openssl
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
