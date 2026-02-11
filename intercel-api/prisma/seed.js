@@ -131,7 +131,7 @@ const plansData = {
       duration: '30 días',
       hasCalls: false,
       unlimitedSocial: true,
-      isFeatured: false,
+      isFeatured: true,
       tag: 'Cámbiate y recibe el Triple de GB',
       order: 2,
     },
@@ -169,7 +169,7 @@ const plansData = {
       originalData: '24GB',
       multiplier: 'Triple',
       features: 'Llamadas y Redes Sociales Ilimitadas',
-      sms: '6,000 SMS',
+      sms: '3,500 SMS',
       duration: '30 días',
       hasCalls: true,
       unlimitedSocial: true,
@@ -183,13 +183,27 @@ const plansData = {
       originalData: '35GB',
       multiplier: 'Triple',
       features: 'Llamadas y Redes Sociales Ilimitadas',
+      sms: '3,500 SMS',
+      duration: '30 días',
+      hasCalls: true,
+      unlimitedSocial: true,
+      isFeatured: true,
+      tag: 'Cámbiate y recibe el Triple de GB',
+      order: 6,
+    },
+    {
+      price: 644,
+      data: '150GB',
+      originalData: '50GB',
+      multiplier: 'Triple',
+      features: 'Llamadas y Redes Sociales Ilimitadas',
       sms: '6,000 SMS',
       duration: '30 días',
       hasCalls: true,
       unlimitedSocial: true,
       isFeatured: false,
       tag: 'Cámbiate y recibe el Triple de GB',
-      order: 6,
+      order: 7,
     },
   ],
   quarterly: [
@@ -203,7 +217,7 @@ const plansData = {
       duration: '3 meses',
       hasCalls: false,
       unlimitedSocial: true,
-      isFeatured: true,
+      isFeatured: false,
       tag: 'Cámbiate y recibe el Triple de GB',
       order: 1,
     },
@@ -227,16 +241,16 @@ const plansData = {
   annual: [
     {
       price: 3419,
-      data: '72GB',
-      originalData: '24GB',
-      multiplier: 'Triple',
+      data: '24 GB',
+      originalData: null,
+      multiplier: null,
       features: 'Llamadas y Redes Sociales Ilimitadas',
       sms: '3,500 SMS',
       duration: '12 meses',
       hasCalls: true,
       unlimitedSocial: true,
-      isFeatured: true,
-      tag: 'Cámbiate y recibe el Triple de GB',
+      isFeatured: false,
+      tag: null,
       order: 1,
     },
   ],
@@ -281,7 +295,7 @@ const plansData = {
       duration: '30 días',
       hasCalls: false,
       unlimitedSocial: false,
-      isFeatured: true,
+      isFeatured: false,
       isMifi: true,
       tag: null,
       order: 3,
@@ -350,6 +364,10 @@ async function main() {
     createdCategories[cat.name] = category;
     console.log(`✅ Category created: ${category.label}`);
   }
+
+  // Delete all existing plans before re-creating
+  const deletedPlans = await prisma.plan.deleteMany({});
+  console.log(`🗑️  Deleted ${deletedPlans.count} existing plans`);
 
   // Create plans for each category
   for (const [categoryName, plans] of Object.entries(plansData)) {
