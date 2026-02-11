@@ -42,22 +42,7 @@ Ideales para usuarios que buscan ahorrar realizando un solo pago por periodos pr
 | :---- | :---- | :---- | :---- |
 | **$3,419** | 24 GB | Llamadas y Redes Sociales Ilimitadas | 3,500 |
 
-## **3\. Planes Por Día (Corta duración)**
-
-Diseñados para necesidades puntuales. Los planes a partir de 7 días también incluyen beneficios por portabilidad.
-
-| Precio | Vigencia | Datos (Promoción) | Beneficio | Llamadas / RRSS | SMS |
-| :---- | :---- | :---- | :---- | :---- | :---- |
-| **$24** | 1 día | 0.5 GB | — | Redes Sociales | 25 |
-| **$57** | 3 días | 2 GB | — | Redes Sociales Ilimitadas | 125 |
-| **$69** | 7 días | ~~2 GB~~ → **4 GB** | Doble de GB | Llamadas y RRSS Ilimitadas | 875 |
-| **$104** | 7 días | ~~6 GB~~ → **12 GB** | Doble de GB | Llamadas y RRSS Ilimitadas | 875 |
-| **$139** ⭐ | 15 días | ~~5 GB~~ → **10 GB** | Doble de GB | Llamadas y RRSS Ilimitadas | 1,750 |
-| **$179** | 15 días | ~~10 GB~~ → **30 GB** | Triple de GB | Llamadas y RRSS Ilimitadas | 1,750 |
-
-> ⭐ = Plan destacado en el sitio oficial
-
-## **4\. Planes MIFI (Internet Inalámbrico)**
+## **3\. Planes MIFI (Internet Inalámbrico)**
 
 Planes para módems portátiles (Hotspot). Vigencia de **30 días**.
 

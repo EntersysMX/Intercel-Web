@@ -10,102 +10,15 @@ const prisma = new PrismaClient();
 
 // Categories Data
 const categories = [
-  { name: 'daily', label: 'Por día', icon: 'CalendarToday', order: 1 },
-  { name: 'monthly', label: 'Mensuales', icon: 'DateRange', order: 2 },
-  { name: 'quarterly', label: 'Trimestrales', icon: 'Event', order: 3 },
-  { name: 'semester', label: 'Semestrales', icon: 'EventNote', order: 4 },
-  { name: 'annual', label: 'Anuales', icon: 'CalendarMonth', order: 5 },
-  { name: 'mifi', label: 'MIFI', icon: 'Router', order: 6 },
+  { name: 'monthly', label: 'Mensuales', icon: 'DateRange', order: 1 },
+  { name: 'quarterly', label: 'Trimestrales', icon: 'Event', order: 2 },
+  { name: 'semester', label: 'Semestrales', icon: 'EventNote', order: 3 },
+  { name: 'annual', label: 'Anuales', icon: 'CalendarMonth', order: 4 },
+  { name: 'mifi', label: 'MIFI', icon: 'Router', order: 5 },
 ];
 
 // Plans Data (from original intercel.com.mx)
 const plansData = {
-  daily: [
-    {
-      price: 24,
-      data: '0.5 GB',
-      originalData: null,
-      multiplier: null,
-      features: 'Redes Sociales',
-      sms: '25 SMS',
-      duration: '1 día',
-      hasCalls: false,
-      unlimitedSocial: false,
-      isFeatured: false,
-      tag: null,
-      order: 1,
-    },
-    {
-      price: 57,
-      data: '2 GB',
-      originalData: null,
-      multiplier: null,
-      features: 'Redes Sociales Ilimitadas',
-      sms: '125 SMS',
-      duration: '3 días',
-      hasCalls: false,
-      unlimitedSocial: true,
-      isFeatured: false,
-      tag: null,
-      order: 2,
-    },
-    {
-      price: 69,
-      data: '4GB',
-      originalData: '2GB',
-      multiplier: 'Doble',
-      features: 'Llamadas y Redes Sociales Ilimitadas',
-      sms: '875 SMS',
-      duration: '7 días',
-      hasCalls: true,
-      unlimitedSocial: true,
-      isFeatured: false,
-      tag: 'Cámbiate y recibe el Doble de GB',
-      order: 3,
-    },
-    {
-      price: 104,
-      data: '12GB',
-      originalData: '6GB',
-      multiplier: 'Doble',
-      features: 'Llamadas y Redes Sociales Ilimitadas',
-      sms: '875 SMS',
-      duration: '7 días',
-      hasCalls: true,
-      unlimitedSocial: true,
-      isFeatured: false,
-      tag: 'Cámbiate y recibe el Doble de GB',
-      order: 4,
-    },
-    {
-      price: 139,
-      data: '10GB',
-      originalData: '5GB',
-      multiplier: 'Doble',
-      features: 'Llamadas y Redes Sociales Ilimitadas',
-      sms: '1,750 SMS',
-      duration: '15 días',
-      hasCalls: true,
-      unlimitedSocial: true,
-      isFeatured: true,
-      tag: 'Cámbiate y recibe el Doble de GB',
-      order: 5,
-    },
-    {
-      price: 179,
-      data: '30GB',
-      originalData: '10GB',
-      multiplier: 'Triple',
-      features: 'Llamadas y Redes Sociales Ilimitadas',
-      sms: '1,750 SMS',
-      duration: '15 días',
-      hasCalls: true,
-      unlimitedSocial: true,
-      isFeatured: false,
-      tag: 'Cámbiate y recibe el Triple de GB',
-      order: 6,
-    },
-  ],
   monthly: [
     {
       price: 109,
@@ -368,6 +281,15 @@ async function main() {
   // Delete all existing plans before re-creating
   const deletedPlans = await prisma.plan.deleteMany({});
   console.log(`🗑️  Deleted ${deletedPlans.count} existing plans`);
+
+  // Delete obsolete categories (e.g., 'daily' removed)
+  const validNames = categories.map(c => c.name);
+  const deletedCats = await prisma.category.deleteMany({
+    where: { name: { notIn: validNames } },
+  });
+  if (deletedCats.count > 0) {
+    console.log(`🗑️  Deleted ${deletedCats.count} obsolete categories`);
+  }
 
   // Create plans for each category
   for (const [categoryName, plans] of Object.entries(plansData)) {

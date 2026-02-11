@@ -3,94 +3,6 @@
  * Extracted from original website - exact same information
  */
 
-// Planes por día
-export const dailyPlans = [
-  {
-    id: 'daily-1',
-    price: 24,
-    data: '0.5 GB',
-    originalData: null,
-    multiplier: null,
-    features: 'Redes Sociales',
-    sms: '25 SMS',
-    duration: '1 día',
-    calls: false,
-    unlimitedSocial: false,
-    featured: false,
-    tag: null,
-  },
-  {
-    id: 'daily-2',
-    price: 57,
-    data: '2 GB',
-    originalData: null,
-    multiplier: null,
-    features: 'Redes Sociales Ilimitadas',
-    sms: '125 SMS',
-    duration: '3 días',
-    calls: false,
-    unlimitedSocial: true,
-    featured: false,
-    tag: null,
-  },
-  {
-    id: 'daily-3',
-    price: 69,
-    data: '4GB',
-    originalData: '2GB',
-    multiplier: 'Doble',
-    features: 'Llamadas y Redes Sociales Ilimitadas',
-    sms: '875 SMS',
-    duration: '7 días',
-    calls: true,
-    unlimitedSocial: true,
-    featured: false,
-    tag: 'Cámbiate y recibe el Doble de GB',
-  },
-  {
-    id: 'daily-4',
-    price: 104,
-    data: '12GB',
-    originalData: '6GB',
-    multiplier: 'Doble',
-    features: 'Llamadas y Redes Sociales Ilimitadas',
-    sms: '875 SMS',
-    duration: '7 días',
-    calls: true,
-    unlimitedSocial: true,
-    featured: false,
-    tag: 'Cámbiate y recibe el Doble de GB',
-  },
-  {
-    id: 'daily-5',
-    price: 139,
-    data: '10GB',
-    originalData: '5GB',
-    multiplier: 'Doble',
-    features: 'Llamadas y Redes Sociales Ilimitadas',
-    sms: '1,750 SMS',
-    duration: '15 días',
-    calls: true,
-    unlimitedSocial: true,
-    featured: true,
-    tag: 'Cámbiate y recibe el Doble de GB',
-  },
-  {
-    id: 'daily-6',
-    price: 179,
-    data: '30GB',
-    originalData: '10GB',
-    multiplier: 'Triple',
-    features: 'Llamadas y Redes Sociales Ilimitadas',
-    sms: '1,750 SMS',
-    duration: '15 días',
-    calls: true,
-    unlimitedSocial: true,
-    featured: false,
-    tag: 'Cámbiate y recibe el Triple de GB',
-  },
-];
-
 // Planes mensuales
 export const monthlyPlans = [
   {
@@ -328,7 +240,6 @@ export const mifiPlans = [
 
 // All plan categories
 export const planCategories = [
-  { id: 'daily', label: 'Por día', icon: 'CalendarToday', plans: dailyPlans },
   { id: 'monthly', label: 'Mensuales', icon: 'DateRange', plans: monthlyPlans },
   { id: 'quarterly', label: 'Trimestrales', icon: 'Event', plans: quarterlyPlans },
   { id: 'semester', label: 'Semestrales', icon: 'EventNote', plans: semesterPlans },
@@ -393,7 +304,6 @@ export const appStoreLinks = {
 };
 
 export default {
-  dailyPlans,
   monthlyPlans,
   quarterlyPlans,
   semesterPlans,
